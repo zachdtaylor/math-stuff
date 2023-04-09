@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+\title{Project Euler Theorems}
+\author{Zach Taylor}
+\maketitle
+
+1. $\sum_{k=1}^n{k} = \frac{n*(n+1)}{2}$ for all $n \geq 1$.
+\begin{proof}
+  The formula clearly holds when $n=1$ and $n=2$. Now suppose the formula holds 
+  when $n = m \geq 2$. Then 
+  $$\sum_{k=1}^{m+1}{k} = \sum_{k=1}^m{k} + m + 1 = \frac{m*(m+1)}{2} + m + 1
+  = \frac{(m+1)*(m+2)}{2}$$
+  Thus the formula holds for $n = m + 1$, so by the principle of induction it holds 
+  for all $n \geq 1$.
+\end{proof}
+\bigbreak
+
+2. Let $a, b, c \in \Z$. Then $b \mid a$ and $c \mid a$ if and only if 
+$\text{lcm}(b, c) \mid a$.
+\begin{proof}
+  Set $n = \text{lcm}(b, c)$, and suppose $b \mid a$ and $c \mid a$. By the 
+  division algorithm, $a = pn + r$ for some $p,r \in \Z$, where $0 \leq r < n$. 
+  Thus, since $b \mid a$ and $b \mid n$, we have $b \mid r$. By the same reasoning, we
+  also have $c \mid r$. Since $r$ is a common multiple of $b$ and $c$ and $r < n$,
+  $r$ must be $0$. Thus $a = pn$, that is, $n \mid a$.
+  Conversely, let $k, j \in \Z$ such that $n = kb$ and $n = jc$. Then if
+  $n \mid a$, we have, for some $m \in \Z$, $a = mn = (mk)b = (mj)c$, and thus
+  $c \mid a$ and $b \mid a$.
+\end{proof}
+\bigbreak
+
+3. Let $a, b \in \Z$. The following hold:
+\begin{itemize}
+  \item If $a$ is odd and $b$ is even, $a + b$ is odd. 
+  \item If $a$ and $b$ are odd, $a + b$ is even.
+\end{itemize}
+\begin{proof}
+  Note that if $a, b \in \Z$ where $a$ is odd and $b$ is even, then
+  $a = 2k + 1$ and $b = 2l$ for $k, l \in \Z$, so $a + b$ = $2(k+l) + 1$ is odd.
+  On the other hand, if both a and b are odd, then we can write $b = 2l + 1$ and
+  $a + b = 2(k + l + 1)$ is even.
+\end{proof}
+\bigbreak
+
+4. Let $\{F_n\}_0^{\infty}$ be the sequence of Fibonacci numbers. If $F_k$ is even, 
+then the next even Fibonacci number is $F_{k+3}$.
+\begin{proof}
+  The first 5 Fibonacci numbers are 1, 2, 3, 5, and 8. Clearly the result holds
+  here, since $F_2 = 2$ is even and $F_{2+3} = F_5 = 8$ is also even. Now suppose
+  that the pattern even, odd, odd, even holds for $F_k$ through $F_{k+3}$.
+  By theorem 3, $F_{k+4} = F_{k+3} + F_{k+2}$ is odd, which implies that
+  $F_{k+5} = F_{k+4} + F_{k+3}$ is odd, which implies that
+  $F_{k+6} = F_{k+5} + F_{k+4}$ is even. Thus the pattern holds for $F_{k+3}$
+  through $F_{k+6}$, so by the priniciple of induction the pattern holds for the
+  entire sequence.
+\end{proof}
+\bigbreak
+
+5. Let $\{E_n\}_1^{\infty}$ be the sequence of even Fibonacci numbers. Then
+$E_n = 4E_{n-1} + E_{n-2}$.
+\begin{proof}
+  If $\{F_n\}_0^{\infty}$ is the Fibonacci sequence,
+  \begin{align*}
+    F_n &= F_{n-1} + F_{n-2}\\
+        &= F_{n-2} + F_{n-3} + F_{n-3} + F_{n-4}\\
+        &= 2F_{n-3} + F_{n-2} + F_{n-4}\\
+        &= 2F_{n-3} + F_{n-3} + F_{n-4} + F_{n-5} + F_{n-6}\\
+        &= 3F_{n-3} + F_{n-4} + F_{n-5} + F_{n-6}\\
+        &= 4F_{n-3} + F_{n-6}
+  \end{align*}
+  Thus, by theorem 4, $E_n = 4E_{n-1} + E_{n-2}$.
+\end{proof}
+\end{document}
